@@ -19,6 +19,7 @@
     8. Enjoy!
     
 <h3>Arguments for Problem 4:</h3>
+
     1. --theta - the angle in deg. at which the bot is rotated.
     
     Sample run command:
@@ -27,9 +28,13 @@
     Note: If no argument is passed the program prints out values for angles [0,30,45,60,90]
 
 <h3>Arguments for Problem 5:</h3>
+
     1. --pitch - the pitch angle in deg.
     2. --yaw - the yaw angle in deg.
     3. --save_plots - saves the figures generated (before using this argument make sure plot_path variable is set correctly for your system)
+
+    Sample run command:
+    python3 problem5.py --yaw 60
 
     Note: If no arguments are passed the program plots for default angles. pitch - 0, 15, -15 and yaw - 0, 45, 90.
 

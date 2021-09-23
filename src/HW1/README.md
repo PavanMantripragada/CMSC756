@@ -18,7 +18,7 @@
     7. To Run problem 5. If OS is Windows, type 'python problem5.py'
     8. Enjoy!
     
-    <h3>Arguments for Problem 4:</h3>
+<h3>Arguments for Problem 4:</h3>
     1. --theta - the angle in deg. at which the bot is rotated.
     
     Sample run command:
@@ -26,7 +26,7 @@
 
     Note: If no argument is passed the program prints out values for angles [0,30,45,60,90]
 
-    <h3>Arguments for Problem 5:</h3>
+<h3>Arguments for Problem 5:</h3>
     1. --pitch - the pitch angle in deg.
     2. --yaw - the yaw angle in deg.
     3. --save_plots - saves the figures generated (before using this argument make sure plot_path variable is set correctly for your system)

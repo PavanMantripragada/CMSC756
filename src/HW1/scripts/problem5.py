@@ -1,4 +1,3 @@
-#!/usr/bin/python3.6
 import numpy as np
 import argparse
 from matplotlib import pyplot as plt

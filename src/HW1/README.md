@@ -9,11 +9,28 @@
 
   <h2>Instructions to run the code:</h2>
   
-    1. Clone the repository by clicking the big green button located here: 
+    1. Clone the repository by clicking the big green button located here: https://github.com/DrKraig/CMSC756
     2. Open command prompt or terminal.
-    3. Navigate to this directory using 'cd Planning-Algorithms/TurtleBot/'
-    4. To Run Dijkstra, Navigate to 'cd Dijkstra'. If OS is Ubuntu, type 'python3 Dijkstra.py'
-    4. To Run AStar, Navigate to 'cd Astar'. If OS is Ubuntu, type 'python3 AStar.py'
-    5. To Run AStar with Dublin Curves on pygame, Navigate to 'cd DubinCurves/pygame'. If OS is Ubuntu, type 'python3 AStar.py'
-    6. Enter the parameters of the robot
-    7. Enjoy!
+    3. Navigate to this directory using 'cd CMSC756/src/HW1/scripts'
+    4. To Run problem 4. If OS is Ubuntu, type 'python3 problem4.py'
+    5. To Run problem 4. If OS is Windows, type 'python problem4.py'
+    6. To Run problem 5. If OS is Ubuntu, type 'python3 problem5.py'
+    7. To Run problem 5. If OS is Windows, type 'python problem5.py'
+    8. Enjoy!
+    
+    <h3>Arguments for Problem 4:</h3>
+    1. --theta - the angle in deg. at which the bot is rotated.
+    
+    Sample run command:
+    python3 problem4.py --theta 45
+
+    Note: If no argument is passed the program prints out values for angles [0,30,45,60,90]
+
+    <h3>Arguments for Problem 5:</h3>
+    1. --pitch - the pitch angle in deg.
+    2. --yaw - the yaw angle in deg.
+    3. --save_plots - saves the figures generated (before using this argument make sure plot_path variable is set correctly for your system)
+
+    Note: If no arguments are passed the program plots for default angles. pitch - 0, 15, -15 and yaw - 0, 45, 90.
+
+

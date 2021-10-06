@@ -17,6 +17,7 @@
     6. To Run problem 5. If OS is Ubuntu, type 'python3 problem5.py'
     7. To Run problem 5. If OS is Windows, type 'python problem5.py'
     8. Enjoy!
+    9. All the plots will be saved in /src/HW1/plots
     
 <h3>Arguments for Problem 4:</h3>
 

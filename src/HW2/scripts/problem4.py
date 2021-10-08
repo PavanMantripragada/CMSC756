@@ -27,7 +27,7 @@ class elbow_manipulator:
             return 0
         
         # Checking for singularity when shoulder offset is zero
-        if x <= 1e-15 and y == 1e-15:
+        if x <= 1e-15 and y <= 1e-15:
             print("Singular Position: Generating a solution with joint angle 1 to be zero")
             self.q[0] = 0
         else:
@@ -155,7 +155,7 @@ def main():
         help="x coordinate of tool frame origin")
     parser.add_argument(
         "--y",
-        default=-1,
+        default=1,
         help="y coordinate of tool frame origin")
     parser.add_argument(
         "--z",
@@ -165,9 +165,9 @@ def main():
 
     # robot link dimensions
     d1 = 2
-    d2 = 1    # shoulder offset
-    a2 = 1.5    
-    d4 = 1    # it is equivalent to a3
+    d2 = 0 # shoulder offset
+    a2 = 1.5  
+    d4 = 1 # it is equivalent to a3
     d6 = 0.5
     robot = elbow_manipulator(d1,d2,a2,d4,d6)
     

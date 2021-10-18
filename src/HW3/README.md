@@ -9,7 +9,7 @@ Code for collision detection between lines and line segments
 
   ## Instructions to run the code
 
-    1. Clone the repository by clicking [here!](https://github.com/DrKraig/CMSC756) 
+    1. Clone the repository by clicking [here!](https://github.com/DrKraig/CMSC756/) 
     2. Open command prompt or terminal.
     3. Navigate to this directory using 'cd CMSC756/src/HW3/scripts'
     4. To Run problem 4. If OS is Ubuntu, type 'python3 problem4.py'

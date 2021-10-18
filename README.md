@@ -1,7 +1,6 @@
-<h1>CMSC756 - Robotics and Control</h1>
+# CMSC756 - Robotics and Control
+This repository is a collection of my course assignments
 
-  <h2>This repository is a collection of my course assignments</h2>
-
-    1. For HW1 go to https://github.com/DrKraig/CMSC756/tree/master/src/HW1
-    2. For HW2 go to https://github.com/DrKraig/CMSC756/tree/master/src/HW2
-    
+1. For HW1 click [here](https://github.com/DrKraig/CMSC756/tree/master/src/HW1)
+2. For HW2 click [here](https://github.com/DrKraig/CMSC756/tree/master/src/HW2)
+3. For HW3 click [here](https://github.com/DrKraig/CMSC756/tree/master/src/HW3)

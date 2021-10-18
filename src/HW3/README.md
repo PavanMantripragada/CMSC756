@@ -1,13 +1,13 @@
 # Homework 3
 Code for collision detection between lines and line segments
 
-  <h2>Dependencies to run the codes</h2>
+  ## Dependencies to run the codes
     
     1. Python 3.6 should be installed on your system.
     2. numpy - Install it using 'python3 -m pip install numpy'
     3. argparse - Install it using 'python3 -m pip install argparse'
 
-  <h2>Instructions to run the code</h2>
+  ## Instructions to run the code
 
     1. Clone the repository by clicking [here!](https://github.com/DrKraig/CMSC756) 
     2. Open command prompt or terminal.
@@ -16,7 +16,7 @@ Code for collision detection between lines and line segments
     5. To Run problem 4. If OS is Windows, type 'python problem4.py'
     6. Enjoy!
     
-  <h3>Arguments for Problem 4</h3>
+  ### Arguments for Problem 4
     
     1. --a - coordinates of point a.   
     2. --b - coordinates of point b.

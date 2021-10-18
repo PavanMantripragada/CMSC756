@@ -15,10 +15,10 @@ Code for collision detection between lines and line segments
   6. Enjoy!
     
   ### Arguments for Problem 4
-  1. --a - coordinates of point a.   
-  2. --b - coordinates of point b.
-  3. --c - coordinates of point c.
-  4. --d - coordinates of point d.
+  1. --a  - coordinates of point a   
+  2. --b  - coordinates of point b
+  3. --c  - coordinates of point c
+  4. --d  - coordinates of point d
       
   Sample run command:
   `python3 problem4.py --a 1.5 2.5 --b 1.5 3.5 --c 12 -1 --d 2 1e-6`

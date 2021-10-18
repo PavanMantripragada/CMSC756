@@ -1,4 +1,4 @@
-<h1>Homework 3</h1>
+# Homework 3
 
   <h2>Dependencies to run the codes:</h2>
 

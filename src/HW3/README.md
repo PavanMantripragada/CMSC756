@@ -1,5 +1,5 @@
 # Homework 3
-Code for collision detection between lines and line segments
+Code for collision detection between lines and line segments [here!](https://github.com/DrKraig/CMSC756/)
 
   ## Dependencies to run the codes
     

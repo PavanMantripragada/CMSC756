@@ -54,6 +54,9 @@ def collison_SAT(polygon1,polygon2):
 
 def main():
 
+    vertices1 = [[1,1],[3,1],[2,3]]
+    vertices2 = [[4,4],[4,7],[7,7],[7,4]]
+
     # vertices1 = [[5,7.001],[7,7.001],[6,9.001]]
     # vertices2 = [[4,4],[4,7],[7,7],[7,4]]
 
@@ -62,10 +65,7 @@ def main():
     
     # vertices1 = [[1,1],[3,1],[2,3]]
     # vertices2 = [[4,4],[4,7],[7,7],[7,4]]
-    
-    vertices1 = [[1,1],[3,1],[2,3]]
-    vertices2 = [[4,4],[4,7],[7,7],[7,4]]
-    
+        
     polygon1 = convex_polygon(vertices1)
     polygon2 = convex_polygon(vertices2)
     

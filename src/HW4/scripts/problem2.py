@@ -21,7 +21,15 @@ class Node:
         for u,v in self.actions:
             x_child = self.x+u
             y_child = self.y+v
-            if is_in_free_space(x_child,y_child):
+            S = np.linspace(0,1,100)
+            collision = False
+            for s in S:
+                x_middle = s*self.x + (1-s)*x_child
+                y_middle = s*self.y + (1-s)*y_child
+                if not is_in_free_space(x_middle,y_middle):
+                    collision = True
+                    break
+            if not collision:
                 child = Node(x_child,y_child)
                 child.parent = self
                 children.append(child)
@@ -144,15 +152,15 @@ def main():
     polygons = []
     polygons.append([[(4,7),(7,13)],[(7,9),(13,11)],[(9,4),(11,7)]])
     polygons.append([[(15,15),(4,10)],[(15,21),(10,18)],[(21,26),(18,12)],
-               [(26,21),(12,11)],[(21,29),(11,5)],[(29,19),(5,8)],[(19,15),(8,4)]])
+               [(26,21),(12,11)],[(21,29),(11,5)],[(29,19),(5,8)],[(19,15),(8,4)]]) 
+    plt.plot(path[:,0],path[:,1],'-o',c='k')
     plt.plot(args.start[0],args.start[1],'ro')
-    plt.plot(args.goal[0],args.goal[1],'go')  
-    plt.plot(path[:,0],path[:,1])
+    plt.plot(args.goal[0],args.goal[1],'go') 
     for polygon in polygons:
         for x,y in polygon:
-            plt.plot(x,y,c='k')
-    xl = np.linspace(0,40,50)
-    yl = np.linspace(0,30,40)
+            plt.plot(x,y,'--',c='k',linewidth='0.2')
+    xl = np.linspace(0,35,36)
+    yl = np.linspace(0,21,22)
     xs = []
     ys = []
     xr = []
@@ -160,14 +168,13 @@ def main():
     for x in xl:
         for y in yl:
             if is_in_free_space(x,y):
-                #print("hey")
                 xs.append(x)
                 ys.append(y)
             else:
                 xr.append(x)
                 yr.append(y)
-    plt.scatter(xs,ys,s=1)
-    plt.scatter(xr,yr,s=1)
+    plt.scatter(xs,ys,s=5)
+    plt.scatter(xr,yr,s=5)
     plt.show()
 if __name__ == '__main__':
     main()

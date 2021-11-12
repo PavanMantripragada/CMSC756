@@ -158,23 +158,16 @@ def main():
     plt.plot(args.goal[0],args.goal[1],'go') 
     for polygon in polygons:
         for x,y in polygon:
-            plt.plot(x,y,'--',c='k',linewidth='0.2')
+            plt.plot(x,y,c='k')
     xl = np.linspace(0,35,36)
     yl = np.linspace(0,21,22)
     xs = []
     ys = []
-    xr = []
-    yr = []
     for x in xl:
         for y in yl:
-            if is_in_free_space(x,y):
-                xs.append(x)
-                ys.append(y)
-            else:
-                xr.append(x)
-                yr.append(y)
-    plt.scatter(xs,ys,s=5)
-    plt.scatter(xr,yr,s=5)
+            xs.append(x)
+            ys.append(y)
+    plt.scatter(xs,ys,s=5,alpha=0.1)
     plt.show()
 if __name__ == '__main__':
     main()

@@ -1,5 +1,6 @@
 import numpy as np
 import argparse
+import time 
 
 def line_collision(l1,l2):
     # Collision is checked using cramer's rule
@@ -51,7 +52,7 @@ def line_segement_collision(a,b,c,d):
     D2 = np.linalg.det(np.array([[l1[0],l1[2]],[l2[0],l2[2]]]))
     
     # If the a single common point exists 
-    if abs(D) >= 1e-10:
+    if abs(D) >= 1e-5:
         r1 = D1/D
         r2 = D2/D
         
@@ -62,7 +63,7 @@ def line_segement_collision(a,b,c,d):
             return 0
     else:
         # Check if there exists multiple common points
-        if abs(D1) <= 1e-10 and abs(D2) <= 1e-10:
+        if abs(D1) <= 1e-5 and abs(D2) <= 1e-5:
             rac = np.linalg.norm([c[0]-a[0],c[1]-a[1]])
             rad = np.linalg.norm([d[0]-a[0],d[1]-a[1]])
             rbc = np.linalg.norm([c[0]-b[0],c[1]-b[1]])
@@ -105,13 +106,13 @@ def main():
         "--c",
         type=float,
         nargs=2,
-        default=[0,-2],
+        default=[1,1],
         help="coordinates of point c")
     parser.add_argument(
         "--d",
         type=float,
         nargs=2,
-        default=[2,3],
+        default=[0,1],
         help="coordinates of point d")    
     args = parser.parse_args()
     if args.a == args.b:
@@ -136,7 +137,10 @@ def main():
         print("The lines collide")
     else:
         print("The lines are not colliding")
-
+    t0 = time.time()
+    line_segement_collision(a,b,c,d)
+    t1 = time.time()
+    print(t1-t0)
     # Checking for collision between the line segements    
     if line_segement_collision(a,b,c,d):
         print("The line segements collide")

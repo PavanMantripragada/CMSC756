@@ -1,6 +1,7 @@
 import argparse
 import numpy as np
 from collections import deque
+import polygons as ply
 import matplotlib.pyplot as plt
 
 class Node:
@@ -16,7 +17,7 @@ class Node:
         else:
             return 0
 
-    def get_children(self):
+    def get_children(self,free_space):
         children = []
         for u,v in self.actions:
             x_child = self.x+u
@@ -26,7 +27,7 @@ class Node:
             for s in S:
                 x_middle = s*self.x + (1-s)*x_child
                 y_middle = s*self.y + (1-s)*y_child
-                if not is_in_free_space(x_middle,y_middle):
+                if not free_space.contains(x_middle,y_middle):
                     collision = True
                     break
             if not collision:
@@ -37,8 +38,9 @@ class Node:
 
 
 class Graph:
-    def __init__(self,root):
+    def __init__(self,root,free_space):
         self.root = root
+        self.free_space = free_space
 
     def search(self,goal):
         status = 0
@@ -53,7 +55,7 @@ class Graph:
             if (new_node.x,new_node.y) in visited_list:
                 continue
             visited_list[(new_node.x,new_node.y)] = True
-            children = new_node.get_children()
+            children = new_node.get_children(self.free_space)
             for child_node in children:
                 open_list.append(child_node)
         if status:
@@ -75,49 +77,27 @@ class Graph:
         print(path)
         return path
 
+class FreeSpace:
+    def __init__(self,polygons):
+        self.polygons = polygons
 
-def is_in_free_space(x,y):
-    polygons = []
-    polygons.append([[(4,7),(7,13)],[(7,9),(13,11)],[(9,4),(11,7)]])
-    polygons.append([[(15,15),(4,10)],[(15,21),(10,11)],[(21,19),(11,8)],[(19,15),(8,4)]])
-    polygons.append([[(15,21),(10,18)],[(21,26),(18,12)],[(26,21),(12,11)],
-                     [(21,15),(11,10)]])
-    polygons.append([[(19,21),(8,11)],[(21,29),(11,5)],[(29,19),(5,8)]])
-    #polygons.append([[(15,15),(4,10)],[(15,21),(10,18)],[(21,26),(18,12)],
-    #            [(26,21),(12,11)],[(21,29),(11,5)],[(29,19),(5,8)],[(19,15),(8,4)]])
-    if x<=0 or x >=35:
-        return 0
-    if y<=0 or y>=21:
-        return 0    
-    if (x-4)**2+(y-4)**2>=16 and x<=4 and y<=4:
-        return 0
-    if (x-4)**2+(y-17)**2>=16 and x<=4 and y>=17:
-        return 0
-    if (x-31)**2+(y-17)**2>=16 and x>=31 and y>=17:
-        return 0
-    if (x-31)**2+(y-4)**2>=16 and x>=31 and y<=4:
-        return 0
-    #i = 0
-    for polygon in polygons:
-        #print(i)
-        count1 = 0
-        count2 = 0
-        for edge_x,edge_y in polygon:
-            s = (y-edge_y[1])/(edge_y[0]-edge_y[1])
-            x_intercept = s*edge_x[0]+(1-s)*edge_x[1] 
-            if s > 0.0:
-                if s<=1.0:
-                    if x_intercept > x:
-                        count1 +=1
-                        #print(edge_x,edge_y)
-                    elif x_intercept < x:
-                        count2 +=1
-                    else:
-                        return 0    
-        if count1 % 2 != 0 and count2 % 2 != 0:
-            return 0
-        #i += 1
-    return 1
+    def contains(self,x,y):
+        if x<=0 or x >=35:
+            return False
+        if y<=0 or y>=21:
+            return False   
+        if (x-4)**2+(y-4)**2>=16 and x<=4 and y<=4:
+            return False
+        if (x-4)**2+(y-17)**2>=16 and x<=4 and y>=17:
+            return False
+        if (x-31)**2+(y-17)**2>=16 and x>=31 and y>=17:
+            return False
+        if (x-31)**2+(y-4)**2>=16 and x>=31 and y<=4:
+            return False
+        for polygon in self.polygons:
+            if polygon.contains(x,y):
+                return False
+        return True
 
 def main():
     # Argument parsing
@@ -132,42 +112,52 @@ def main():
         "--goal",
         type=float,
         nargs=2,
-        default=[25,10],
+        default=[27,15],
         help="coordinates of goal")
     args = parser.parse_args()
 
-    if not is_in_free_space(args.start[0],args.start[1]):
+    polygons = []
+    polygons.append(ply.Polygon([[4,7],[7,13],[9,11]],True))
+    polygons.append(ply.Polygon([[15,4],[15,10],[21,18],[26,12],[21,11],[29,5],[19,8]],False))
+    
+    free_space = FreeSpace(polygons)
+
+    if not free_space.contains(args.start[0],args.start[1]):
         print("Please select another start location")
         return
-    if not is_in_free_space(args.goal[0],args.goal[1]):
+    if not free_space.contains(args.goal[0],args.goal[1]):
         print("Please select another goal location")
         return
 
     start = Node(args.start[0],args.start[1])
     goal = Node(args.goal[0],args.goal[1])
-    route = Graph(start)
+    route = Graph(start,free_space)
     path = np.array(route.search(goal))
 
     fig = plt.figure()
-    polygons = []
-    polygons.append([[(4,7),(7,13)],[(7,9),(13,11)],[(9,4),(11,7)]])
-    polygons.append([[(15,15),(4,10)],[(15,21),(10,18)],[(21,26),(18,12)],
-               [(26,21),(12,11)],[(21,29),(11,5)],[(29,19),(5,8)],[(19,15),(8,4)]]) 
+
     plt.plot(path[:,0],path[:,1],'-o',c='k')
-    plt.plot(args.start[0],args.start[1],'ro')
-    plt.plot(args.goal[0],args.goal[1],'go') 
+    #plt.plot(args.start[0],args.start[1],'ro')
+    #plt.plot(args.goal[0],args.goal[1],'go') 
     for polygon in polygons:
-        for x,y in polygon:
-            plt.plot(x,y,c='k')
+        for [x1,y1],[x2,y2] in polygon.edge_list:
+            plt.plot([x1,x2],[y1,y2],c='k')
     xl = np.linspace(0,35,36)
     yl = np.linspace(0,21,22)
     xs = []
     ys = []
+    xc = []
+    yc = []
     for x in xl:
         for y in yl:
-            xs.append(x)
-            ys.append(y)
-    plt.scatter(xs,ys,s=5,alpha=0.1)
+            if free_space.contains(x,y):
+                xs.append(x)
+                ys.append(y)
+            else:
+                xc.append(x)
+                yc.append(y)
+    plt.scatter(xs,ys,c='g',s=5,alpha=0.5)
+    plt.scatter(xc,yc,c='r',s=5,alpha=0.5)
     plt.show()
 if __name__ == '__main__':
     main()

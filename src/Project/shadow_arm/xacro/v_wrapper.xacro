@@ -1,0 +1,10 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find sr_multi_description)/urdf/right_srhand_ur10_bt_sp_biotacs.urdf.xacro"/>
+    <!-- <xacro:include filename="$(find shadow_arm)/xacro/v_transmission.xacro"/>
+
+    <xacro:arg name="transmission_hw_v_interface" default="hardware_interface/VelocityJointInterface"/>
+
+    <xacro:velocity_custom prefix="ra_" hw_v_interface="$(arg transmission_hw_v_interface)"/> -->
+
+</robot>

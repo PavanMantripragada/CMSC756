@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+    <robot name ="door_u" xmlns:xacro="http://wiki.ros.org/xacro">
+	<xacro:include filename="$(find door_u)/urdf/door_u.urdf"/>
+
+</robot>	
+
+

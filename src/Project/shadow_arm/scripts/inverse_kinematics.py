@@ -126,8 +126,6 @@ def print_list(a,text):
     print("################################")
 
 def main():
-    # The code is available on
-    # https://github.com/DrKraig/ENPM662/tree/devel/src/HW4
      
     d = np.array([0.1273,0,0,0.163941,0.1157,0.0922])    
     q = np.array([0.09523985696467108, -0.7183862276793844, 0.48845086571663465, 0.22925462512416583, 1.6656604751690187, -1.571821596664277])

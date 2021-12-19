@@ -125,8 +125,6 @@ def print_list(a,text):
     print("################################")
 
 def main():
-    # The code is available on
-    # https://github.com/DrKraig/ENPM662/tree/devel/src/HW4
     print("Validing for angles (0,0,0,0,0,0)")
     d = np.array([0.1273,0,0,0.163941,0.1157,0.0922])    
     q = np.zeros(6)
